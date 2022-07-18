@@ -1,0 +1,11 @@
+.oops {
+    padding: 10%;
+}
+
+@media (max-width: 575.98px) { 
+
+    .oops {
+        padding: 0%;
+    }
+
+}
