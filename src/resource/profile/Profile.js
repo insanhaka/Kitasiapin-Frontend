@@ -17,6 +17,9 @@ import Authtab from '../components/Authtab';
 function Profile() {
 
     let navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [userID, setUserID] = useState('');
     
     const logout = () => {
         localStorage.removeItem('passport');
@@ -24,8 +27,19 @@ function Profile() {
     }
 
     useEffect(() => {
-        const aktif = document.getElementById('profile').classList.add('active');
-    
+        const aktif = document.getElementById('account').classList.add('active');
+
+        const token = localStorage.getItem('passport');
+        if (token !== null) {
+            const pisah = token.split('#');
+            const nama = pisah[0];
+            setName(nama);
+            const mail = pisah[1];
+            setEmail(mail);
+            const idUser = pisah[2];
+            setUserID(idUser);
+        }
+
     }, []);
 
   return (
@@ -39,12 +53,12 @@ function Profile() {
                     <Image src={Pp} className="img-fluid mb-5" alt="User Image"/>
                 </div>
                 <div className='col-sm-10'>
-                    <h1>Insan Hadi Karunia</h1>
-                    <p>insanhadikarunia@gmail.com</p>
+                    <h1>{name}</h1>
+                    <p>{email}</p>
                     <br/>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <Link to='/edit/{id}/profile' style={{ color : '#303952' }}>
+                            <Link to={`/account/${userID}/setting`} style={{ color : '#303952' }}>
                                 <Icon path={mdiAccountCog} size={1} style={{ marginRight: 10 }} />
                                 Pengaturan Akun
                             </Link>

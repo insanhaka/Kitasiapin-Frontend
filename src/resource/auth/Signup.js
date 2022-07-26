@@ -47,7 +47,7 @@ function Signup() {
             if (res == "success") {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Registrasi Berhasil, Silahkan Login',
+                    text: 'Registrasi Berhasil, Silahkan Login !',
                     showConfirmButton: false,
                     timer: 3000
                 })

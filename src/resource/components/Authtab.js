@@ -43,7 +43,7 @@ function Authtab() {
                     </li>
 
                     <li className="nav-item">
-                        <Link to="/profile" className="nav-link" id="profile">
+                        <Link to="/account" className="nav-link" id="account">
                             <Icon path={mdiAccountBox} size={1} />
                             <br/>
                             Akun
@@ -58,7 +58,7 @@ function Authtab() {
     <Nav className="navbar navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none" style={{ backgroundColor : '#fff' }}>
         <ul className="navbar-nav nav-justified w-100">
         <li className="nav-item">
-            <Link to="/dashboard" className="nav-link" id="dashboard">
+            <Link to="/dashboard" className="nav-link" id="m-dashboard">
                 <Icon path={mdiMonitorDashboard} size={1} />
                     <br/>
                     Dashboard
@@ -66,7 +66,7 @@ function Authtab() {
             </li>
             
             <li className="nav-item">
-                <Link to="/invitation" className="nav-link" id="invitation">
+                <Link to="/invitation" className="nav-link" id="m-invitation">
                     <Icon path={mdiNewspaperVariantMultiple} size={1} />
                     <br/>
                     Undangan
@@ -74,7 +74,7 @@ function Authtab() {
             </li>
 
             <li className="nav-item">
-                <Link to="/sent" className="nav-link" id="sent">
+                <Link to="/sent" className="nav-link" id="m-sent">
                     <Icon path={mdiEmailFast} size={1} />
                     <br/>
                     Kirim
@@ -82,7 +82,7 @@ function Authtab() {
             </li>
 
             <li className="nav-item">
-                <Link to="/profile" className="nav-link" id="profile">
+                <Link to="/account" className="nav-link" id="m-account">
                     <Icon path={mdiAccountBox} size={1} />
                     <br/>
                     Akun

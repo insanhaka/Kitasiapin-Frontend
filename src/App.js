@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -22,6 +21,7 @@ import Dashboard from './resource/dashboard/Dashboard';
 import Invitation from './resource/invitation/Invitation';
 import Sent from './resource/sent/Sent';
 import Profile from './resource/profile/Profile';
+import Accountsetting from './resource/profile/Accountsetting';
 
 
 const PrivateRoute = () => {
@@ -59,8 +59,11 @@ export default function App() {
             <Route path='/sent' element={<PrivateRoute/>}>
               <Route path="/sent" element={<Sent/>}/>
             </Route>
-            <Route path='/profile' element={<PrivateRoute/>}>
-              <Route path="/profile" element={<Profile/>}/>
+            <Route path='/account' element={<PrivateRoute/>}>
+              <Route path="/account" element={<Profile/>}/>
+            </Route>
+            <Route path='/account/:id/setting' element={<PrivateRoute/>}>
+              <Route path="/account/:id/setting" element={<Accountsetting/>}/>
             </Route>
 
           </Routes>
