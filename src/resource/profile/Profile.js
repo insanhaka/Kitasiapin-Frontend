@@ -11,10 +11,23 @@ import {
     Link,
     useNavigate 
 } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 import Authtab from '../components/Authtab';
 
 function Profile() {
+
+    const apiUrl = useSelector(state => state.ApiReducer);
+
+    const token = localStorage.getItem('passport');
+    const pisah = token.split('#');
+    const idUser = pisah[2];
+    const mytoken = pisah[3];
+    const token_auth = {
+        headers: { Authorization: `Bearer ${mytoken}` }
+    };
 
     let navigate = useNavigate();
     const [name, setName] = useState('');
@@ -29,15 +42,34 @@ function Profile() {
     useEffect(() => {
         const aktif = document.getElementById('account').classList.add('active');
 
-        const token = localStorage.getItem('passport');
-        if (token !== null) {
-            const pisah = token.split('#');
-            const nama = pisah[0];
-            setName(nama);
-            const mail = pisah[1];
-            setEmail(mail);
-            const idUser = pisah[2];
-            setUserID(idUser);
+        if (mytoken !== null) {
+            axios.get(
+              apiUrl.url+'account-setting/'+idUser, token_auth
+            ).then(function (response) {
+              const res = response.data.data[0];
+              const nama = res.name;
+              setName(nama);
+              const imail = res.email;
+              setEmail(imail);
+              
+            })
+            .catch(function (error) {
+              console.log("error nih");
+              Swal.fire({
+                  icon: 'error',
+                  text: 'Mohon maaf, sedang ada gangguan pada server',
+                  showConfirmButton: false,
+                  timer: 2500
+              })
+            });
+    
+        }else {
+        Swal.fire({
+            icon: 'error',
+            text: 'Emmm.., Ada masalah nih',
+            showConfirmButton: false,
+            timer: 2500
+        })
         }
 
     }, []);
@@ -58,7 +90,7 @@ function Profile() {
                     <br/>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <Link to={`/account/${userID}/setting`} style={{ color : '#303952' }}>
+                            <Link to={`/account/${idUser}/setting`} style={{ color : '#303952' }}>
                                 <Icon path={mdiAccountCog} size={1} style={{ marginRight: 10 }} />
                                 Pengaturan Akun
                             </Link>

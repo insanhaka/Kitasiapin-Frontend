@@ -24,7 +24,7 @@ function Home() {
           <div className='row'>
             
             <div className='col-md-6'>
-              <Image src={Headimg} style={{ width: 550 }} alt="Head Image"/>
+              <Image src={Headimg} className="img-fluid" alt="Head Image"/>
             </div>
             <div className='col-md-6' style={{padding: '8%', paddingTop: '15%'}}>
               <h1>KITA SIAPIN</h1>
